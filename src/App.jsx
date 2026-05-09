@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -17,13 +17,22 @@ import Contact from './pages/Contact';
 import FavoritesPage from './pages/FavoritesPage';
 import { FavoritesProvider } from './context/FavoritesContext';
 import SearchPage from './pages/SearchPage';
+import LoadingScreen from './components/LoadingScreen';
 
 function App() {
-  // MOBILE DETECTION
   const [isMobile, setIsMobile] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const location = useLocation();
 
+  // Loading on route change
   useEffect(() => {
-    // CHECK MOBILE
+    setLoading(true);
+    const timer = setTimeout(() => setLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
+  // Mobile check
+  useEffect(() => {
     const checkMobile = () => {
       const mobileCheck = window.innerWidth < 768;
       setIsMobile(mobileCheck);
@@ -33,14 +42,9 @@ function App() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // DISABLE RIGHT CLICK + F12 DEVTOOLS
+  // Disable right click + F12
   useEffect(() => {
-    // Block Right Click
-    const handleContextMenu = (e) => {
-      e.preventDefault();
-    };
-
-    // Block F12, Ctrl+Shift+I, Ctrl+U
+    const handleContextMenu = (e) => e.preventDefault();
     const handleKeyDown = (e) => {
       if (
         e.key === 'F12' ||
@@ -53,44 +57,31 @@ function App() {
 
     window.addEventListener('contextmenu', handleContextMenu);
     window.addEventListener('keydown', handleKeyDown);
-
     return () => {
       window.removeEventListener('contextmenu', handleContextMenu);
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
-  // MOBILE BLOCK SCREEN
+  // Mobile blocked view
   if (isMobile) {
     return (
       <div style={{
-        width: '100vw',
-        height: '100vh',
-        backgroundColor: '#0f0f0f',
-        color: '#fff',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '24px',
-        textAlign: 'center',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        zIndex: 999999
+        width: '100vw', height: '100vh', backgroundColor: '#0f0f0f', color: '#fff',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+        padding: '24px', textAlign: 'center', position: 'fixed', top: 0, left: 0, zIndex: 999999
       }}>
         <h1>🔒 Desktop Only</h1>
         <p style={{ fontSize: '18px', marginTop: '12px', opacity: 0.8 }}>
           This website is only accessible on desktop devices.
         </p>
-        <p style={{ fontSize: '14px', marginTop: '6px', opacity: 0.6 }}>
-          Please open it on your computer.
-        </p>
       </div>
     );
   }
 
-  // MAIN APP
+  // Show loading
+  if (loading) return <LoadingScreen />;
+
   return (
     <HelmetProvider>
       <FavoritesProvider>

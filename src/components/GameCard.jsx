@@ -7,16 +7,15 @@ const GameCard = ({ game }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Create URL-friendly slug
   const slug = game.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-
-  // ✅ AUTO CHOOSE ROUTE BASED ON TYPE
-  const detailPath = game.type === 'software' 
-    ? `/software/${slug}` 
-    : `/game/${slug}`;
+  const detailPath = game.type === 'software' ? `/software/${slug}` : `/game/${slug}`;
 
   return (
-    <Link to={detailPath} onClick={handleClick} style={{ textDecoration: 'none' }}>
+    <Link
+      to={detailPath}
+      onClick={handleClick}
+      style={{ textDecoration: 'none' }}
+    >
       <div className="game-card">
         <LazyLoadImage
           src={game.image}

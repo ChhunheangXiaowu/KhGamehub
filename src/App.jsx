@@ -21,14 +21,12 @@ import LoadingScreen from './components/LoadingScreen';
 
 function AppContent() {
   const location = useLocation();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    // REAL LOAD: hides when page is fully ready
-    const handleLoad = () => setLoading(false);
-    window.addEventListener('load', handleLoad);
-    return () => window.removeEventListener('load', handleLoad);
+    const timer = setTimeout(() => setLoading(false), 1100);
+    return () => clearTimeout(timer);
   }, [location.pathname]);
 
   if (loading) return <LoadingScreen />;
@@ -60,19 +58,25 @@ function AppContent() {
 function App() {
   const [isMobile, setIsMobile] = useState(false);
 
-  // Mobile block
+  // MOBILE BLOCK
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Disable right click + F12
+  // SECURITY: RIGHT CLICK + F12 BLOCK
   useEffect(() => {
     const blockContext = (e) => e.preventDefault();
     const blockKeys = (e) => {
-      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'U')) {
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+        (e.ctrlKey && e.key === 'U')
+      ) {
         e.preventDefault();
       }
     };
@@ -84,15 +88,29 @@ function App() {
     };
   }, []);
 
-  // Mobile screen
+  // MOBILE LOCK SCREEN
   if (isMobile) {
     return (
       <div style={{
-        width: '100vw', height: '100vh', backgroundColor: '#0f0f0f', color: '#fff',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        textAlign: 'center', position: 'fixed', top: 0, left: 0, zIndex: 999999
+        width: '100vw',
+        height: '100vh',
+        backgroundColor: '#0f0f0f',
+        color: '#fff',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        padding: '30px',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        zIndex: 999999,
       }}>
         <h2>🔒 DESKTOP ONLY</h2>
+        <p style={{ marginTop: '10px', opacity: 0.7 }}>
+          Please open on a computer
+        </p>
       </div>
     );
   }

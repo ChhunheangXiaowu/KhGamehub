@@ -1,7 +1,7 @@
 [
   {
   "id": 1,
-  "title": "Cyberpunk 2077 Phantom Liberty (v2.31a)",
+  "title": "Cyberpunk 2077 Phantom Liberty (v2.31a + All DLC)",
   "image": "https://repack-games.com/wp-content/uploads/2023/07/Cyberpunk-2077-Phantom-Liberty-Free-Download-Repack-Games.com_.jpg",
   "genre": ["RPG", "Open World"],
   "type": "game",
@@ -15,7 +15,7 @@
     "storage": "70 GB available space"
   },
   "trailer": "https://www.youtube.com/embed/kfX9n_G0N2Y",
-  "torrentLink": "https://drive.google.com/file/d/1l_wQ7OcxI6otYe0Z3zmegFUhXO47ol0G/view?usp=sharing",
+  "torrentLink": "https://megaup.net/b2f4201e799e046ce6ed99e59d5a1b63/Cyberpunk.2077.v2.31a-P2P.torrent",
   "updates": [
   { "name": "Update 2.30 -> 2.31", "link": "https://megaup.net/865c6ed9bc398966932e45cbf51e9de4/Cyberpunk_2077_update_2.30_-_2.31.7z" }
 
@@ -45,7 +45,7 @@
     "storage": "75 GB available space"
   },
   "trailer": "https://www.youtube.com/embed/_VyeH5uteVk",
-"downloadLink": "https://drive.google.com/file/d/1F9WkkCjWPWp1HMagcRe98Ug5IalZbhAa/view?usp=sharing",
+"downloadLink": "https://megaup.net/53f2239fb53309bf817c7ddc9bd28eb5/Stellar-Blade-Complete-Edition-TRNT.torrent",
 
   "downloads": 4200000,
   "updatedAt": "09-05-2026",
@@ -54,6 +54,36 @@
     "https://staticdelivery.nexusmods.com/images/7804/89211973-1755463967.jpg",
     "https://oyster.ignimgs.com/mediawiki/apis.ign.com/stellar-blade/f/f8/Scarlet_1.jpg",
     "https://cdn.staticneo.com/ew/thumb/6/64/StB_Chapter15-01.jpg/730px-StB_Chapter15-01.jpg"
+  ]
+},
+{
+  "id": 3,
+  "title": "Black Myth: Wukong (v1.0.21.23831 + All DLC + Bonus Content)",
+  "image": "https://gaming-cdn.com/images/products/7678/orig/black-myth-wukong-pc-steam-cover.jpg?v=1755639535",
+  "genre": ["RPG", "Open World","Action","Adventure"],
+  "type": "game",
+  "releaseDate": "20-08-2024",
+  "description": "Black Myth: Wukong is an action RPG rooted in Chinese mythology. The story is based on Journey to the West, one of the Four Great Classical Novels of Chinese literature. You shall set out as the Destined One to venture into the challenges and marvels ahead, to uncover the obscured truth beneath the veil of a glorious legend from the past. Enter a fascinating realm filled with the wonders and discoveries of ancient Chinese mythology! As the Destined One, you shall traverse an array of breathtaking and distinctive landscapes from the classic tale, composing an epic of adventure that is seen anew. Beneath the ferocity and craftiness of your foes lies an engaging tapestry of their origins, personalities, and motivations waiting to be revealed. As the Destined One, you will uncover the stories behind a variety of characters, delving beyond your battles with them to taste the love, hate, greed, and fury they once held and still carry within.<br><br>One of the major highlights of Journey to the West is its diverse cast of adversaries, each with their unique strengths. As the Destined One, you will encounter powerful foes and worthy rivals throughout your journey. Fearlessly engage them in epic battles where surrender is not an option. Spells, transformations, and magic vessels of all manifestations, in which some counteract while others amplify, have long been iconic combat elements of Chinese mythology. As the Destined One, aside from mastering various staff techniques, you can also freely combine different spells, abilities, weapons, and equipment to find a winning strategy that best suits your combat style.",
+  "minRequirements": {
+    "os": "Windows 10 64-bit",
+    "processor": "Intel Core i5-8400 / AMD Ryzen 5 1600",
+    "ram": "16 GB RAM",
+    "graphics": "NVIDIA GeForce GTX 1060 6GB / AMD Radeon RX 580 8GB",
+    "storage": "130 GB available space"
+  },
+  "trailer": "https://www.youtube.com/embed/pnSsgRJmsCc",
+  "torrentLink": "https://megaup.net/3ded0000574be660ba6e69fed3e3a4ce/Black-Myth-Wukong-TRNT.torrent",
+  "updates": [
+  { "name": "Cracked Fix", "link": "https://megaup.net/d7955239a2906c4bdee1503121b909db/Black-Myth-Wukong-CRACKFIX-voices38.rar" }
+
+],
+  "downloads": 28100000,
+  "updatedAt": "08-05-2026",
+  "screenshots": [
+    "https://gamingbolt.com/wp-content/uploads/2024/07/black-myth-wukong-1.jpg",
+    "https://cdn.mos.cms.futurecdn.net/HFdPCdxXxAxNEUTUV8qaFV.jpg",
+    "https://static0.srcdn.com/wordpress/wp-content/uploads/2024/08/black-myth-wukong-price-platform-story-gameplay-1.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrmTq4Qj1HZfDIrORISh1PDJKpiD9n1xR9Rw&s"
   ]
 }
 

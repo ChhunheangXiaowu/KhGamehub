@@ -19,14 +19,14 @@ import { FavoritesProvider } from './context/FavoritesContext';
 import SearchPage from './pages/SearchPage';
 import LoadingScreen from './components/LoadingScreen';
 
-// WRAP ROUTES TO USE LOCATION (FIX BLACK SCREEN)
+// LOADING LOGIC (SAFE FOR REACT ROUTER)
 function AppContent() {
   const location = useLocation();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    const timer = setTimeout(() => setLoading(false), 1200);
+    const timer = setTimeout(() => setLoading(false), 1400);
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
@@ -56,57 +56,51 @@ function AppContent() {
   );
 }
 
+// MAIN APP
 function App() {
   const [isMobile, setIsMobile] = useState(false);
 
-  // MOBILE CHECK
+  // BLOCK MOBILE
   useEffect(() => {
     const checkMobile = () => {
-      const mobileCheck = window.innerWidth < 768;
-      setIsMobile(mobileCheck);
+      setIsMobile(window.innerWidth < 768);
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // DISABLE RIGHT CLICK + F12
+  // BLOCK RIGHT CLICK + F12
   useEffect(() => {
-    const handleContextMenu = (e) => e.preventDefault();
-    const handleKeyDown = (e) => {
-      if (
-        e.key === 'F12' ||
-        (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-        (e.ctrlKey && e.key === 'U')
-      ) {
+    const blockContext = (e) => e.preventDefault();
+    const blockKeys = (e) => {
+      if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'U')) {
         e.preventDefault();
       }
     };
-    window.addEventListener('contextmenu', handleContextMenu);
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('contextmenu', blockContext);
+    window.addEventListener('keydown', blockKeys);
     return () => {
-      window.removeEventListener('contextmenu', handleContextMenu);
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('contextmenu', blockContext);
+      window.removeEventListener('keydown', blockKeys);
     };
   }, []);
 
-  // MOBILE BLOCK
+  // MOBILE LOCK SCREEN
   if (isMobile) {
     return (
       <div style={{
         width: '100vw', height: '100vh', backgroundColor: '#0f0f0f', color: '#fff',
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-        padding: '24px', textAlign: 'center', position: 'fixed', top: 0, left: 0, zIndex: 999999
+        textAlign: 'center', padding: '30px', position: 'fixed', top: 0, left: 0, zIndex: 999999
       }}>
-        <h1>🔒 Desktop Only</h1>
-        <p style={{ fontSize: '18px', marginTop: '12px', opacity: 0.8 }}>
-          This website is only accessible on desktop devices.
-        </p>
+        <h2>🔒 DESKTOP ONLY</h2>
+        <p>Please open this website on a computer.</p>
       </div>
     );
   }
 
-  // MAIN APP
+  // FINAL RENDER
   return (
     <HelmetProvider>
       <FavoritesProvider>

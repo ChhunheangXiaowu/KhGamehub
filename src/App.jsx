@@ -68,23 +68,37 @@ function App() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // SECURITY: RIGHT CLICK + F12 BLOCK
+  // SECURITY: BLOCK RIGHT CLICK + F12 + Ctrl+C + COPY
   useEffect(() => {
+    // Block right click
     const blockContext = (e) => e.preventDefault();
+    
+    // Block F12, Ctrl+Shift+I, Ctrl+U, Ctrl+C
     const blockKeys = (e) => {
       if (
         e.key === 'F12' ||
         (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-        (e.ctrlKey && e.key === 'U')
+        (e.ctrlKey && e.key === 'U') ||
+        (e.ctrlKey && e.key === 'c') || // BLOCK Ctrl+C
+        (e.ctrlKey && e.key === 'C')    // BLOCK Ctrl+C uppercase
       ) {
         e.preventDefault();
       }
     };
+
+    // Block text selection + copy
+    const blockCopy = (e) => e.preventDefault();
+
     window.addEventListener('contextmenu', blockContext);
     window.addEventListener('keydown', blockKeys);
+    window.addEventListener('copy', blockCopy);
+    window.addEventListener('selectstart', blockCopy);
+
     return () => {
       window.removeEventListener('contextmenu', blockContext);
       window.removeEventListener('keydown', blockKeys);
+      window.removeEventListener('copy', blockCopy);
+      window.removeEventListener('selectstart', blockCopy);
     };
   }, []);
 

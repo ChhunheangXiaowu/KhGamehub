@@ -1,38 +1,7 @@
 [
- {
-  "id": 1,
-  "title": "Cyberpunk 2077 (v2.30)",
-  "image": "https://repack-games.com/wp-content/uploads/2020/12/Cyberpunk-2077-Free-Download-Repack-Games.com_.jpg",
-  "genre": ["RPG", "Open World"],
-  "type": "game",
-  "releaseDate": "10-12-2020",
-  "description": "Cyberpunk 2077 is an action-adventure RPG set in the metropolis of Night City, where power, luxury and body modification are prized above all else. You play as V, a mercenary in search of a device that allows you to gain immortality. You can change cyber-implants, skills and play style of your character, exploring the open world, where your actions affect the course of the plot and everything that surrounds you.<br> <strong> Game Features:</strong><br>• Become a cyberpunk – an implant-equipped mercenary – and make a name for yourself on the streets of Night City.<br>• Explore the vast world of Night City, which looks brighter, more complex and deeper than anything you’ve seen before.<br>• Take on the most dangerous task in your life and find a prototype of the implant, allowing you to gain immortality.",
-  "minRequirements": {
-    "os": "Windows 7 or 10 64-bit",
-    "processor": "Intel Core i5-3570K or AMD FX-8310",
-    "ram": "8 GB RAM",
-    "graphics": "NVIDIA GeForce GTX 780 or AMD Radeon RX 470",
-    "storage": "70 GB available space"
-  },
-  "trailer": "https://www.youtube.com/embed/8X2kIfS6fb8",
-"downloadLink": "https://drive.google.com/file/d/1OdXshUJSRw5EMKljYPbeKqgddhwnLik0/view?usp=sharing",
-"updates": [
-  { "name": "Update v1.1", "link": "https://..." },
-  { "name": "Update v1.2", "link": "https://..." },
-  { "name": "Hotfix v1.3", "link": "https://..." }
-],
-  "downloads": 28100000,
-  "updatedAt": "08-05-2026",
-  "screenshots": [
-    "https://repack-games.com/wp-content/uploads/2023/07/Cyberpunk-2077-Phantom-Liberty-Free-Download.jpg",
-    "https://repack-games.com/wp-content/uploads/2023/07/Cyberpunk-2077-Phantom-Liberty-Free-Download-2.jpg",
-    "https://repack-games.com/wp-content/uploads/2023/07/Cyberpunk-2077-Phantom-Liberty-Free-Download-3.jpg",
-    "https://repack-games.com/wp-content/uploads/2023/07/Cyberpunk-2077-Phantom-Liberty-Free-Download-4.jpg"
-  ]
-},
   {
-  "id": 2,
-  "title": "Cyberpunk 2077 Phantom Liberty (v2.2)",
+  "id": 1,
+  "title": "Cyberpunk 2077 Phantom Liberty (v2.31a)",
   "image": "https://repack-games.com/wp-content/uploads/2023/07/Cyberpunk-2077-Phantom-Liberty-Free-Download-Repack-Games.com_.jpg",
   "genre": ["RPG", "Open World"],
   "type": "game",
@@ -46,7 +15,7 @@
     "storage": "70 GB available space"
   },
   "trailer": "https://www.youtube.com/embed/kfX9n_G0N2Y",
-  "torrentLink": "https://drive.google.com/file/d/1XNJ3e0z90FwwZ8f5LjwKAL-fV0KayYn7/view?usp=sharing",
+  "torrentLink": "https://drive.google.com/file/d/1l_wQ7OcxI6otYe0Z3zmegFUhXO47ol0G/view?usp=sharing",
   "downloads": 28100000,
   "updatedAt": "08-05-2026",
   "screenshots": [
@@ -57,7 +26,7 @@
   ]
 },
 {
-  "id": 3,
+  "id": 2,
   "title": "Stellar Blade",
   "image": "https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/stellar_blade_final.jpg",
   "genre": ["RPG", "Open World","Action","Adventure"],
@@ -83,4 +52,6 @@
     "https://cdn.staticneo.com/ew/thumb/6/64/StB_Chapter15-01.jpg/730px-StB_Chapter15-01.jpg"
   ]
 }
+
+
 ]

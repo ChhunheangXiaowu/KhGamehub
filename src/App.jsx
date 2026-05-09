@@ -19,19 +19,47 @@ import { FavoritesProvider } from './context/FavoritesContext';
 import SearchPage from './pages/SearchPage';
 import LoadingScreen from './components/LoadingScreen';
 
-function App() {
-  const [isMobile, setIsMobile] = useState(false);
-  const [loading, setLoading] = useState(false);
+// WRAP ROUTES TO USE LOCATION (FIX BLACK SCREEN)
+function AppContent() {
   const location = useLocation();
+  const [loading, setLoading] = useState(false);
 
-  // Loading on route change
   useEffect(() => {
     setLoading(true);
     const timer = setTimeout(() => setLoading(false), 1200);
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
-  // Mobile check
+  if (loading) return <LoadingScreen />;
+
+  return (
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/top-games" element={<TopGames />} />
+        <Route path="/top-software" element={<TopSoftware />} />
+        <Route path="/recently-updated" element={<RecentlyUpdated />} />
+        <Route path="/game/:slug" element={<GameDetail />} />
+        <Route path="/software/:slug" element={<GameDetail />} />
+        <Route path="/genre/:genreName" element={<GenrePage />} />
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/dmca" element={<DMCA />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
+      </Routes>
+      <Footer />
+    </>
+  );
+}
+
+function App() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  // MOBILE CHECK
   useEffect(() => {
     const checkMobile = () => {
       const mobileCheck = window.innerWidth < 768;
@@ -42,7 +70,7 @@ function App() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Disable right click + F12
+  // DISABLE RIGHT CLICK + F12
   useEffect(() => {
     const handleContextMenu = (e) => e.preventDefault();
     const handleKeyDown = (e) => {
@@ -54,7 +82,6 @@ function App() {
         e.preventDefault();
       }
     };
-
     window.addEventListener('contextmenu', handleContextMenu);
     window.addEventListener('keydown', handleKeyDown);
     return () => {
@@ -63,7 +90,7 @@ function App() {
     };
   }, []);
 
-  // Mobile blocked view
+  // MOBILE BLOCK
   if (isMobile) {
     return (
       <div style={{
@@ -79,31 +106,12 @@ function App() {
     );
   }
 
-  // Show loading
-  if (loading) return <LoadingScreen />;
-
+  // MAIN APP
   return (
     <HelmetProvider>
       <FavoritesProvider>
         <Router>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/top-games" element={<TopGames />} />
-            <Route path="/top-software" element={<TopSoftware />} />
-            <Route path="/recently-updated" element={<RecentlyUpdated />} />
-            <Route path="/game/:slug" element={<GameDetail />} />
-            <Route path="/software/:slug" element={<GameDetail />} />
-            <Route path="/genre/:genreName" element={<GenrePage />} />
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/dmca" element={<DMCA />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-service" element={<TermsOfService />} />
-            <Route path="/about-us" element={<AboutUs />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/favorites" element={<FavoritesPage />} />
-          </Routes>
-          <Footer />
+          <AppContent />
         </Router>
       </FavoritesProvider>
     </HelmetProvider>

@@ -19,15 +19,16 @@ import { FavoritesProvider } from './context/FavoritesContext';
 import SearchPage from './pages/SearchPage';
 import LoadingScreen from './components/LoadingScreen';
 
-// LOADING LOGIC (SAFE FOR REACT ROUTER)
 function AppContent() {
   const location = useLocation();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
-    const timer = setTimeout(() => setLoading(false), 1400);
-    return () => clearTimeout(timer);
+    // REAL LOAD: hides when page is fully ready
+    const handleLoad = () => setLoading(false);
+    window.addEventListener('load', handleLoad);
+    return () => window.removeEventListener('load', handleLoad);
   }, [location.pathname]);
 
   if (loading) return <LoadingScreen />;
@@ -56,21 +57,18 @@ function AppContent() {
   );
 }
 
-// MAIN APP
 function App() {
   const [isMobile, setIsMobile] = useState(false);
 
-  // BLOCK MOBILE
+  // Mobile block
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // BLOCK RIGHT CLICK + F12
+  // Disable right click + F12
   useEffect(() => {
     const blockContext = (e) => e.preventDefault();
     const blockKeys = (e) => {
@@ -86,21 +84,19 @@ function App() {
     };
   }, []);
 
-  // MOBILE LOCK SCREEN
+  // Mobile screen
   if (isMobile) {
     return (
       <div style={{
         width: '100vw', height: '100vh', backgroundColor: '#0f0f0f', color: '#fff',
-        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-        textAlign: 'center', padding: '30px', position: 'fixed', top: 0, left: 0, zIndex: 999999
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        textAlign: 'center', position: 'fixed', top: 0, left: 0, zIndex: 999999
       }}>
         <h2>🔒 DESKTOP ONLY</h2>
-        <p>Please open this website on a computer.</p>
       </div>
     );
   }
 
-  // FINAL RENDER
   return (
     <HelmetProvider>
       <FavoritesProvider>

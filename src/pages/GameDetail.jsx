@@ -108,18 +108,12 @@ const GameDetail = () => {
         </div>
       )}
 
-      {/* ========== DOWNLOAD SECTION: BASE GAME + MULTIPLE UPDATES ========== */}
+      {/* ========== DOWNLOAD SECTION (LIGHT/DARK MODE COMPATIBLE) ========== */}
       <div className="info-block" style={{ marginTop: '30px' }}>
         <h2>Download Game</h2>
 
         {/* BASE GAME DOWNLOAD */}
-        <div style={{
-          background: '#1a1a1a',
-          padding: '18px 22px',
-          borderRadius: '10px',
-          marginBottom: '12px',
-          border: '1px solid #333'
-        }}>
+        <div className="download-card">
           <h3 style={{ margin: '0 0 10px', fontSize: '18px' }}>📥 Base Game</h3>
           <a href={game.downloadLink || game.torrentLink} target="_blank" rel="noopener noreferrer">
             <button className="download-btn" style={{ width: '100%' }}>
@@ -134,21 +128,7 @@ const GameDetail = () => {
             <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>🔧 Updates & Patches</h3>
 
             {game.updates.map((update, index) => (
-              <div
-                key={index}
-                style={{
-                  background: '#1a1a1a',
-                  padding: '16px 20px',
-                  borderRadius: '10px',
-                  marginBottom: '10px',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  border: '1px solid #333',
-                  flexWrap: 'wrap',
-                  gap: '10px'
-                }}
-              >
+              <div className="update-card" key={index}>
                 <span style={{ fontSize: '16px' }}>{update.name}</span>
                 <a
                   href={update.link}

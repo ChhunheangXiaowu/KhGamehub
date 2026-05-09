@@ -760,3 +760,26 @@ body {
 .game-card.hidden {
   display: none;
 }
+/* ---------------------------- */
+/* Game Detail - Download Cards */
+/* ---------------------------- */
+.download-card {
+  background: var(--card-bg);
+  padding: 18px 22px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.update-card {
+  background: var(--card-bg);
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 10px;
+}

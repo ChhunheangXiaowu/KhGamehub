@@ -23,18 +23,44 @@ function App() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // CHECK MOBILE
     const checkMobile = () => {
-      // Blocks phones + small tablets (width < 768px)
       const mobileCheck = window.innerWidth < 768;
       setIsMobile(mobileCheck);
     };
-
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // IF MOBILE → SHOW BLOCK SCREEN
+  // DISABLE RIGHT CLICK + F12 DEVTOOLS
+  useEffect(() => {
+    // Block Right Click
+    const handleContextMenu = (e) => {
+      e.preventDefault();
+    };
+
+    // Block F12, Ctrl+Shift+I, Ctrl+U
+    const handleKeyDown = (e) => {
+      if (
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+        (e.ctrlKey && e.key === 'U')
+      ) {
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener('contextmenu', handleContextMenu);
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('contextmenu', handleContextMenu);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  // MOBILE BLOCK SCREEN
   if (isMobile) {
     return (
       <div style={{
@@ -64,7 +90,7 @@ function App() {
     );
   }
 
-  // NORMAL APP FOR DESKTOP
+  // MAIN APP
   return (
     <HelmetProvider>
       <FavoritesProvider>

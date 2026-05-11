@@ -137,7 +137,34 @@
     "https://kotaku.com/app/uploads/2026/01/ss_17b0e8d6a90e174e45f4c7438167d.jpg",
     "https://www.psu.com/wp/wp-content/uploads/2026/04/forza-horizon-6.jpg"
   ]
+},
+{
+  "id": 6,
+  "title": "Resident Evil Requiem Deluxe Edition (All DLC + Bonus Content)",
+  "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0ud5xAk23YMAyq1UfOpzR46VK2mNrTOMY-w&s",
+  "genre": ["Action","Adventure","Horror"],
+  "type": "game",
+  "releaseDate": "27-02-2026",
+  "description": "<h2>Requiem for the dead. Nightmare for the living.</h2><br><br>A new era of survival horror arrives with Resident Evil Requiem, the latest and most immersive entry yet in the iconic Resident Evil series. Experience terrifying survival horror with FBI analyst Grace Ashcroft, and dive into pulse-pounding action with legendary agent Leon S. Kennedy. Both of their journeys and unique gameplay styles intertwine into a heart-stopping, emotional experience that will chill you to your core.<br><br><h2>Raccoon City</h2><br><br>Return once again to the city of disaster and despair.<br>A midwestern city in the United States and the headquarters for the former global pharmaceutical company, Umbrella.<br>In the face of the zombie outbreak in 1998, the government approved a sterilization operation, a missile strike on the city in an attempt to quickly bring the situation under control—but this was swiftly covered up.<br><br><h2>Grace Ashcroft</h2><br><br>An intelligence analyst for the FBI who demonstrates intense focus and insight in deductive reasoning and analysis. Her mother’s death shook her to the soul, making her an introvert who immerses herself in work. So she heads to the abandoned hotel alone to investigate this mysterious death.<br><br><h2>Leon S. Kennedy</h2><br><br>One of the survivors of the Raccoon City Incident. With a strong sense of justice and physical capabilities to match, he has responded to numerous outbreaks since that fateful day. Now, as a seasoned DSO agent combatting bioterrorism, he has returned to investigate the latest string of deaths in the Midwest.<br><br><h2>Gameplay</h2><br><br>Experience the series’ classic survival horror through combat, investigations, puzzles, and resource management. Gameplay allows you to freely switch between first and third-person views to face the horrors in a way that suits your playstyle.",
+  "minRequirements": {
+    "os": "OS: Windows 11 (64bit required)",
+    "processor": "Intel core i5-8500 / AMD Ryzen 5 3500",
+    "ram": "16 GB RAM",
+    "graphics": "GeForce GTX 1660 6GB /  Radeon RX 5500 XT 8GB",
+    "storage": "100 GB  available space"
+  },
+  "trailer": "https://www.youtube.com/embed/POz1-EmLsTY?si=FmksUP38oGr3UiQy",
+  "torrentLink": "https://megaup.net/d1ebd67be402bc22f66ebf13169af0f3/Forza-Horizon-6-TRNT.torrent",
+  "downloads": 12300000,
+  "updatedAt": "11-05-2026",
+  "screenshots": [
+    "https://assets-prd.ignimgs.com/2026/01/06/resident-evil-requiem-4k-path-tracing-nvidia-dlss-4-trailer-00-00-31-1767699156677.png",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFu40lELJyzUZ2sS-45TPYtowmTATNfwK8Iw&s",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqwYb6zgZJPoHJlaUYFVFVMf3URHoczVI2GQ&s",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSODuAHYVkCLPDRdNK1dJMy1fmOMEOTlLq8w&s"
+  ]
 }
+
 
 
 ]

@@ -6,7 +6,17 @@ const FilterSidebar = () => {
   const navigate = useNavigate();
 
   const allGenres = [...new Set(gamesData.flatMap(g => g.genre))];
-  const allYears = [...new Set(gamesData.map(g => new Date(g.releaseDate).getFullYear()))].sort((a,b)=>b-a);
+
+  // ✅ FIXED: Extract YEAR from DD-MM-YYYY (NO MORE NaN)
+  const allYears = [...new Set(
+    gamesData
+      .map(g => {
+        if (!g.releaseDate) return null;
+        const parts = g.releaseDate.split('-');
+        return parts[2] || null; // GET YEAR FROM LAST PART
+      })
+      .filter(y => y && !isNaN(y)) // REMOVE INVALID
+  )].sort((a, b) => b - a);
 
   const currentGenre = searchParams.get('genre') || '';
   const currentYear = searchParams.get('year') || '';
@@ -104,11 +114,10 @@ const FilterSidebar = () => {
         ))}
       </div>
 
-      {/* Year Filter ✅ ADDED "All" BUTTON */}
+      {/* Year Filter ✅ WORKING PERFECTLY */}
       <div style={{marginBottom:'20px'}}>
         <p style={{marginBottom:'8px',fontWeight:'500'}}>Release Year</p>
         
-        {/* ALL YEAR BUTTON */}
         <div
           onClick={() => applyFilter('year', '')}
           style={{

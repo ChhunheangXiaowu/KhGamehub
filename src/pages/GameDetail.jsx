@@ -8,7 +8,7 @@ import { useFavorites } from '../context/FavoritesContext';
 const GameDetail = () => {
   const { slug } = useParams();
 
-  // 🔑 Find game by SLUG (from title), NOT by ID
+  // Find game safely
   const game = gamesData.find(g => {
     const gameSlug = g.title
       .toLowerCase()
@@ -16,27 +16,19 @@ const GameDetail = () => {
     return gameSlug === slug;
   });
 
-  const [lightboxImage, setLightboxImage] = useState(null);
-  const [copied, setCopied] = useState(false);
+  // SAFE parse date DD-MM-YYYY → DD/MM/YYYY
+  const displayDate = game?.releaseDate
+    ? game.releaseDate.replace(/-/g, '/')
+    : 'Unknown';
 
+  const [lightboxImage, setLightboxImage] = useState(null);
   const { toggleFavorite, isFavorite } = useFavorites();
   const isFav = game ? isFavorite(game.id) : false;
 
-  // ❌ If not found → go home
+  // If no game found
   if (!game) {
     return <Navigate to="/" replace />;
   }
-
-  const currentUrl = window.location.href;
-
-  const copyLink = async () => {
-    await navigator.clipboard.writeText(currentUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const shareFb = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
-  const shareTw = `https://twitter.com/intent/tweet?text=${encodeURIComponent(game.title)}&url=${encodeURIComponent(currentUrl)}`;
 
   const relatedItems = gamesData
     .filter(item => item.id !== game.id && item.genre.some(g => game.genre.includes(g)))
@@ -48,10 +40,10 @@ const GameDetail = () => {
     <div className="container main">
       <Helmet>
         <title>{game.title} - Free PC Game Download | GameHub</title>
-        <meta name="description" content={`${game.title} free PC game download. View system requirements, screenshots, trailer and torrent repack.`} />
+        <meta name="description" content={`${game.title} free PC game download.`} />
       </Helmet>
 
-      {/* ========== YOUR ORIGINAL BANNER + FAV BUTTON ========== */}
+      {/* Banner */}
       <div style={{ position: 'relative' }}>
         <img src={game.image} alt={game.title} className="detail-banner" />
         <button className="detail-fav-btn" onClick={() => toggleFavorite(game)}>
@@ -60,6 +52,11 @@ const GameDetail = () => {
       </div>
       
       <h1 style={{ fontSize: '36px', marginBottom: '16px' }}>{game.title}</h1>
+
+      {/* ✅ DATE DISPLAY SAFE */}
+      <p style={{ fontSize: '17px', marginBottom: '12px', opacity: 0.9 }}>
+        📅 Release Date: <strong>{displayDate}</strong>
+      </p>
       
       <div className="badge-list">
         {game.genre.map((tag, i) => (
@@ -67,11 +64,13 @@ const GameDetail = () => {
         ))}
       </div>
 
+      {/* Description */}
       <div className="info-block">
         <h2>Description</h2>
         <p dangerouslySetInnerHTML={{ __html: game.description }} />
       </div>
 
+      {/* Requirements */}
       <div className="info-block">
         <h2>Minimum System Requirements</h2>
         {Object.entries(game.minRequirements).map(([k, v]) => (
@@ -79,6 +78,7 @@ const GameDetail = () => {
         ))}
       </div>
 
+      {/* Trailer */}
       {game.trailer && (
         <>
           <h2 style={{ margin: '20px 0 10px' }}>Gameplay Trailer</h2>
@@ -86,14 +86,15 @@ const GameDetail = () => {
         </>
       )}
 
+      {/* Screenshots */}
       <div className="screenshots-section">
         <h2>Game Screenshots</h2>
         <div className="screenshots-grid">
-          {game.screenshots.slice(0, 4).map((src, i) => (
+          {game.screenshots?.slice(0, 4).map((src, i) => (
             <img 
               key={i} 
               src={src} 
-              alt={`Screenshot ${i+1}`} 
+              alt={`Screen ${i+1}`} 
               className="screenshot-img" 
               onClick={() => setLightboxImage(src)}
             />
@@ -101,6 +102,7 @@ const GameDetail = () => {
         </div>
       </div>
 
+      {/* Lightbox */}
       {lightboxImage && (
         <div className="lightbox-overlay active" onClick={() => setLightboxImage(null)}>
           <button className="lightbox-close" onClick={() => setLightboxImage(null)}>×</button>
@@ -108,34 +110,26 @@ const GameDetail = () => {
         </div>
       )}
 
-      {/* ========== DOWNLOAD SECTION (LIGHT/DARK MODE COMPATIBLE) ========== */}
+      {/* Download Section */}
       <div className="info-block" style={{ marginTop: '30px' }}>
         <h2>Download Game</h2>
-
-        {/* BASE GAME DOWNLOAD */}
         <div className="download-card">
           <h3 style={{ margin: '0 0 10px', fontSize: '18px' }}>📥 Base Game</h3>
-          <a href={game.downloadLink || game.torrentLink} target="_blank" rel="noopener noreferrer">
+          <a href={game.torrentLink} target="_blank" rel="noopener noreferrer">
             <button className="download-btn" style={{ width: '100%' }}>
               Download Base Game
             </button>
           </a>
         </div>
 
-        {/* MULTIPLE UPDATES */}
+        {/* Updates */}
         {game.updates && game.updates.length > 0 && (
           <div style={{ marginTop: '20px' }}>
             <h3 style={{ fontSize: '18px', marginBottom: '12px' }}>🔧 Updates & Patches</h3>
-
             {game.updates.map((update, index) => (
               <div className="update-card" key={index}>
                 <span style={{ fontSize: '16px' }}>{update.name}</span>
-                <a
-                  href={update.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ textDecoration: 'none' }}
-                >
+                <a href={update.link} target="_blank" rel="noopener noreferrer">
                   <button className="download-btn" style={{ padding: '10px 22px' }}>
                     Download
                   </button>
@@ -146,6 +140,7 @@ const GameDetail = () => {
         )}
       </div>
 
+      {/* Related Games */}
       {relatedItems.length > 0 && (
         <div style={{ marginTop: '60px' }} onClick={scrollToTop}>
           <h2 style={{ marginBottom: '20px', fontSize: '26px' }}>You May Also Like</h2>
